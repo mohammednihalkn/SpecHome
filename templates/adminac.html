@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Company</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Inter',sans-serif;
+            background:#000;
+            color:#fff;
+            min-height:100vh;
+            padding:60px 80px;
+        }
+
+        .container{
+            max-width:1000px;
+            margin-bottom:50px;
+        }
+
+        .tag{
+            color:#8BFF2A;
+            font-size:18px;
+            font-weight:700;
+            letter-spacing:3px;
+            margin-bottom:20px;
+            text-transform:uppercase;
+        }
+
+        h2{
+            font-size:72px;
+            font-weight:800;
+            line-height:1;
+            margin-bottom:30px;
+        }
+
+        .subtitle{
+            font-size:24px;
+            color:#bdbdbd;
+            line-height:1.8;
+            margin-bottom:50px;
+            max-width:800px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:10px;
+            color:#e0e0e0;
+            font-weight:600;
+        }
+
+        input[type="text"]{
+            width:100%;
+            padding:18px 20px;
+            background:#111;
+            border:1px solid #222;
+            border-radius:12px;
+            color:white;
+            font-size:16px;
+            margin-bottom:20px;
+            outline:none;
+        }
+
+        input[type="text"]:focus{
+            border-color:#8BFF2A;
+        }
+
+        button{
+            background:#8BFF2A;
+            color:#000;
+            border:none;
+            padding:18px 45px;
+            border-radius:50px;
+            font-size:24px;
+            font-weight:700;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            transform:translateY(-2px);
+        }
+
+        .back-link{
+            display:inline-block;
+            margin-top:25px;
+            color:#bdbdbd;
+            text-decoration:none;
+            font-size:15px;
+        }
+
+        .back-link:hover{
+            color:#8BFF2A;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:30px;
+            background:#0a0a0a;
+            border-radius:15px;
+            overflow:hidden;
+        }
+
+        th{
+            background:#111;
+            color:#8BFF2A;
+            padding:18px;
+            text-align:left;
+        }
+
+        td{
+            padding:18px;
+            border-top:1px solid #1f1f1f;
+        }
+
+        td a{
+            color:#8BFF2A;
+            text-decoration:none;
+            font-weight:600;
+        }
+
+        td a:hover{
+            text-decoration:underline;
+        }
+        .delete-btn{
+    background:#ff3b30;
+    color:white !important;
+    padding:8px 16px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.delete-btn:hover{
+    background:#d32f2f;
+    text-decoration:none;
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="tag">ADMIN PANEL</div>
+
+        <h2>Manage Company Specifications Effortlessly</h2>
+
+        <p class="subtitle">
+            Add, update and organize company information from a modern
+            administrative dashboard designed for speed and simplicity.
+        </p>
+
+        <form method="post">
+            <label>Company Name</label>
+            <input type="text" name="name">
+
+            <button type="submit">Add Company</button>
+        </form>
+
+        <a href="{% url 'adminhome' %}" class="back-link">
+            Back to Admin Home
+        </a>
+
+    </div>
+
+    <div class="container">
+
+        <div class="tag">COMPANY LIST</div>
+
+        <table>
+            <tr>
+               <th>Company Name</th>
+               <th>Add Product</th>
+               <th>Delete</th>
+            </tr>
+
+            {% for i in a %}
+<tr>
+    <td>{{ i.name }}</td>
+
+    <td>
+        <a href="{% url 'add_product' i.id %}">
+            Add Product
+        </a>
+    </td>
+
+    <td>
+        <a href="{% url 'delete_company' i.id %}"
+           class="delete-btn"
+           onclick="return confirm('Delete this company?')">
+            Delete
+        </a>
+    </td>
+</tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+</body>
+</html>

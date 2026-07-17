@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Company View</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#000;
+    color:#fff;
+    min-height:100vh;
+    padding:60px 80px;
+}
+
+.hero{
+    max-width:1200px;
+}
+
+.page-label{
+    color:#8BFF2A;
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:20px;
+    display:block;
+}
+
+.hero h1{
+    font-size:72px;
+    font-weight:800;
+    line-height:1;
+    max-width:900px;
+    margin-bottom:30px;
+}
+
+.hero p{
+    font-size:24px;
+    color:#bdbdbd;
+    line-height:1.8;
+    max-width:900px;
+    margin-bottom:50px;
+}
+
+.company-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.company-card{
+    background:#0a0a0a;
+    border:1px solid #1f1f1f;
+    border-radius:20px;
+    padding:30px;
+    transition:0.3s;
+}
+
+.company-card:hover{
+    border-color:#8BFF2A;
+    transform:translateY(-4px);
+}
+
+.company-card a{
+    color:#fff;
+    text-decoration:none;
+    font-size:24px;
+    font-weight:700;
+}
+
+.company-card a:hover{
+    color:#8BFF2A;
+}
+.back-link{
+    display:block;
+    margin-top:40px;
+    margin-bottom:40px;
+    color:#bdbdbd;
+    text-decoration:none;
+    font-size:16px;
+    font-weight:500;
+}
+
+.back-link:hover{
+    color:#8BFF2A;
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+    <span class="page-label">COMPANIES</span>
+
+    <h1>
+        Explore Smartphone Brands
+    </h1>
+
+    <p>
+        Browse available smartphone companies and select a brand
+        to view its products, models and detailed specifications.
+    </p>
+            <a href="/userhome/" class="back-link">
+            Back to User Home
+        </a>
+
+    <div class="company-grid">
+
+        {% for company in a %}
+        <div class="company-card">
+            <a href="{% url 'userviewmodel' company.id %}">
+                {{ company.name }}
+            </a>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</section>
+
+</body>
+</html>
